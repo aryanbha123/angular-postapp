@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LocalDbService } from '../../core/local-db';
 
+/**
+ * A component for creating new posts.
+ * It includes a form for post title, body, tags, and mood.
+ * It also supports saving and loading drafts.
+ */
 @Component({
   selector: 'app-post-composer',
   standalone: true,
@@ -11,6 +16,9 @@ import { LocalDbService } from '../../core/local-db';
   styleUrls: ['./post-composer.component.css']
 })
 export class PostComposerComponent implements OnInit {
+  /**
+   * Event emitter for when a new post is created.
+   */
   @Output() postCreated = new EventEmitter<void>();
 
   title = '';
@@ -21,6 +29,9 @@ export class PostComposerComponent implements OnInit {
 
   constructor(private db: LocalDbService) {}
 
+  /**
+   * Initializes the component by loading a draft if it exists.
+   */
   ngOnInit(): void {
     const draft = this.db.getDraft(this.userId);
     if (draft) {
@@ -31,6 +42,9 @@ export class PostComposerComponent implements OnInit {
     }
   }
 
+  /**
+   * Saves the current form state as a draft in localStorage.
+   */
   saveDraft(): void {
     const draft = {
       title: this.title,
@@ -42,6 +56,10 @@ export class PostComposerComponent implements OnInit {
     this.db.saveDraft(this.userId, draft);
   }
 
+  /**
+   * Creates a new post and saves it to localStorage.
+   * Emits a `postCreated` event and clears the form and the draft.
+   */
   createPost(): void {
     if (!this.body.trim()) {
       return; // Basic validation
@@ -72,6 +90,9 @@ export class PostComposerComponent implements OnInit {
     this.resetForm();
   }
 
+  /**
+   * Resets the form to its initial state.
+   */
   resetForm(): void {
     this.title = '';
     this.body = '';

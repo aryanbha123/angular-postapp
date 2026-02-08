@@ -51,13 +51,12 @@
   </div>
 
   <!-- Comments Section -->
-  <div class="comments-section">
+  <!-- <div class="comments-section">
     <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-4 flex items-center gap-2">
       <i class="fas fa-comments text-cyan-400"></i>
       Comments
     </h4>
     
-    <!-- Comments List -->
     <div *ngIf="comments.length > 0; else noComments" class="space-y-3 mb-4 max-h-64 overflow-y-auto custom-scrollbar">
       <div *ngFor="let comment of comments; let i = index" class="p-3 bg-gray-800 rounded-xl text-gray-300 text-sm border border-gray-700 hover:border-gray-600 transition-colors duration-200">
         <div class="flex items-start gap-3">
@@ -83,7 +82,6 @@
       </div>
     </ng-template>
 
-    <!-- Comment Input -->
     <div class="flex gap-2 mt-4">
       <div class="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-sm font-bold text-white flex-shrink-0 shadow-lg shadow-cyan-500/30">
         {{ currentUserInitial || 'M' }}
@@ -105,7 +103,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <style>

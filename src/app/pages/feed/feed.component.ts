@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { UiCardComponent } from '../../shared/ui/ui-card/ui-card.component';
 // Removed UiModalComponent and PostComposerComponent imports
 
-// Define the Post interface
+/**
+ * Interface representing a post object.
+ */
 interface Post {
   id: string;
   authorId: string;
@@ -14,7 +16,6 @@ interface Post {
   title: string | null;
   body: string;
   tags: string[];
-
   mood: string;
   createdAt: string;
   updatedAt: string | null;
@@ -24,11 +25,14 @@ interface Post {
   deleted: boolean;
   isLiked: boolean;
   comments: string[];
-  authorTeam: string;  // Add this
-  timeAgo: string;     
+  authorTeam: string;
+  timeAgo: string;
 }
 
-
+/**
+ * Component for displaying the feed of posts.
+ * It handles loading, filtering, sorting, and interacting with posts.
+ */
 @Component({
   selector: 'app-feed',
   standalone: true,
@@ -44,13 +48,20 @@ export class FeedComponent implements OnInit {
   searchTerm = '';
   sortBy = 'newest';
   teamFilter = '';
- isLoading: boolean = false; 
+  isLoading: boolean = false;
+
   constructor(private db: LocalDbService) { }
 
+  /**
+   * Initializes the component by loading the posts.
+   */
   ngOnInit(): void {
     this.loadPosts();
   }
 
+  /**
+   * Loads posts from the local database, applies search, filter, and sort, and updates the component's state.
+   */
   loadPosts(): void {
     const likedPosts = this.db.getLikes();
     console.log('FeedComponent: loadPosts - likedPosts from DB:', likedPosts);
@@ -89,6 +100,10 @@ export class FeedComponent implements OnInit {
     console.log('FeedComponent: loadPosts - posts after filter/sort:', JSON.parse(JSON.stringify(this.posts)));
   }
 
+  /**
+   * Handles the like/unlike action on a post.
+   * @param postId The ID of the post that was liked/unliked.
+   */
   onLiked(postId: string): void {
     this.db.toggleLike(postId);
     const post = this.posts.find(p => p.id === postId);
@@ -98,6 +113,10 @@ export class FeedComponent implements OnInit {
     this.loadPosts();
   }
 
+  /**
+   * Handles the submission of a new comment on a post.
+   * @param event An object containing the postId and the commentText.
+   */
   onCommentSubmitted(event: { postId: string, commentText: string }): void {
     const { postId, commentText } = event;
     if (commentText.trim()) {
@@ -106,6 +125,12 @@ export class FeedComponent implements OnInit {
     }
   }
 
+  /**
+   * TrackBy function for the posts list to improve performance.
+   * @param index The index of the item.
+   * @param post The post object.
+   * @returns The unique ID of the post.
+   */
   trackByPostId(index: number, post: Post): string {
     return post.id;
   }
