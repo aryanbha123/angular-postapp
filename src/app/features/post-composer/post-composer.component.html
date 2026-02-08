@@ -1,0 +1,28 @@
+<form (ngSubmit)="createPost()">
+  <div class="mb-4">
+    <label for="title" class="block text-gray-700 font-semibold mb-2">Title (optional)</label>
+    <input type="text" id="title" name="title" [(ngModel)]="title" (ngModelChange)="saveDraft()"
+      class="w-full p-2 border border-gray-300 rounded">
+  </div>
+  <div class="mb-4">
+    <label for="body" class="block text-gray-700 font-semibold mb-2">Body</label>
+    <textarea id="body" name="body" [(ngModel)]="body" (ngModelChange)="saveDraft()" required
+      class="w-full p-2 border border-gray-300 rounded" rows="4"></textarea>
+  </div>
+  <div class="mb-4">
+    <label for="tags" class="block text-gray-700 font-semibold mb-2">Tags (comma-separated)</label>
+    <input type="text" id="tags" name="tags" [(ngModel)]="tags" (ngModelChange)="saveDraft()"
+      class="w-full p-2 border border-gray-300 rounded">
+  </div>
+  <div class="mb-4">
+    <label for="mood" class="block text-gray-700 font-semibold mb-2">Mood</label>
+    <select id="mood" name="mood" [(ngModel)]="mood" (ngModelChange)="saveDraft()"
+      class="w-full p-2 border border-gray-300 rounded">
+      <option value="funny">Funny</option>
+      <option value="relatable">Relatable</option>
+      <option value="chaotic">Chaotic</option>
+      <option value="pain">Pain</option>
+    </select>
+  </div>
+  <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Create Post</button>
+</form>

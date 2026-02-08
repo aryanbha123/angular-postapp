@@ -1,0 +1,144 @@
+<div class="feed-container px-20 py-10 mx-auto min-h-screen bg-gray-950">
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h2 class="text-3xl font-bold text-white">Feed</h2>
+      <p class="text-gray-500 text-sm mt-1">{{ posts?.length || 0 }} posts available</p>
+    </div>
+    <button class="p-3 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-gray-400 hover:text-cyan-400 transition-all duration-200 shadow-lg">
+      <i class="fas fa-sync-alt"></i>
+    </button>
+  </div>
+
+  <!-- Search, Filter, Sort Controls -->
+  <div class="mb-6 p-5 bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-800 shadow-2xl">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Search -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <i class="fas fa-search text-gray-500"></i>
+        </div>
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          (ngModelChange)="loadPosts()" 
+          placeholder="Search posts..." 
+          class="w-full pl-11 pr-4 py-3 bg-gray-950 border border-gray-800 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 text-gray-300 placeholder-gray-600 transition-all duration-200"
+        >
+      </div>
+      
+      <!-- Sort -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <i class="fas fa-sort text-gray-500"></i>
+        </div>
+        <select 
+          [(ngModel)]="sortBy" 
+          (ngModelChange)="loadPosts()" 
+          class="w-full pl-11 pr-10 py-3 bg-gray-950 border border-gray-800 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 text-gray-300 appearance-none cursor-pointer transition-all duration-200"
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="popular">Most Popular</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+          <i class="fas fa-chevron-down text-gray-500 text-sm"></i>
+        </div>
+      </div>
+
+      <!-- Team Filter -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <i class="fas fa-filter text-gray-500"></i>
+        </div>
+        <select 
+          [(ngModel)]="teamFilter" 
+          (ngModelChange)="loadPosts()" 
+          class="w-full pl-11 pr-10 py-3 bg-gray-950 border border-gray-800 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 text-gray-300 appearance-none cursor-pointer transition-all duration-200"
+        >
+          <option value="">All Teams</option>
+          <option value="Platform">Platform</option>
+          <option value="Frontend">Frontend</option>
+          <option value="Backend">Backend</option>
+          <option value="DevOps">DevOps</option>
+          <option value="QA">QA</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+          <i class="fas fa-chevron-down text-gray-500 text-sm"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Filters Display -->
+    <div *ngIf="searchTerm || teamFilter" class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-800">
+      <span class="text-xs text-gray-600 flex items-center">Active filters:</span>
+      <span *ngIf="searchTerm" class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-cyan-400 text-xs">
+        <i class="fas fa-search"></i>
+        "{{ searchTerm }}"
+        <button (click)="searchTerm = ''; loadPosts()" class="hover:text-cyan-300">
+          <i class="fas fa-times"></i>
+        </button>
+      </span>
+      <span *ngIf="teamFilter" class="inline-flex items-center gap-2 px-3 py-1 bg-purple-500/10 border border-purple-500/30 rounded-lg text-purple-400 text-xs">
+        <i class="fas fa-users"></i>
+        {{ teamFilter }}
+        <button (click)="teamFilter = ''; loadPosts()" class="hover:text-purple-300">
+          <i class="fas fa-times"></i>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Posts Feed -->
+  <div class="space-y-4">
+    <div *ngFor="let post of posts; trackBy: trackByPostId">
+      <app-ui-card
+        [title]="post.title"
+        [authorName]="post.authorName"
+        [authorTeam]="post.authorTeam"
+        [timeAgo]="post.timeAgo"
+        [likeCount]="post.likeCount"
+        [comments]="post.comments"
+        [isLiked]="post.isLiked"
+        [postId]="post.id"
+        (liked)="onLiked(post.id)"
+        (commentSubmitted)="onCommentSubmitted($event)"
+      >
+        <p>{{ post.body }}</p>
+      </app-ui-card>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!posts || posts.length === 0" class="text-center py-16 bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-800">
+      <i class="fas fa-inbox text-6xl text-gray-800 mb-4"></i>
+      <h3 class="text-xl font-semibold text-gray-400 mb-2">No posts found</h3>
+      <p class="text-gray-600 text-sm">{{ searchTerm || teamFilter ? 'Try adjusting your filters' : 'Be the first to create a post!' }}</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="text-center py-16">
+      <div class="inline-block">
+        <i class="fas fa-spinner fa-spin text-4xl text-cyan-400"></i>
+        <p class="text-gray-500 mt-4">Loading posts...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Remove default select arrow for custom styling */
+  select::-ms-expand {
+    display: none;
+  }
+
+  /* Custom option styling - even darker */
+  select option {
+    background-color: #030712; /* gray-950 */
+    color: #d1d5db;
+    padding: 8px;
+  }
+
+  select option:hover {
+    background-color: #1f2937;
+  }
+</style>

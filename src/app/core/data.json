@@ -1,0 +1,203 @@
+{
+    "currentUser": {
+        "id": "u1",
+        "name": "Binarykeeda",
+        "team": "Platform",
+        "avatar": null,
+        "joinedAt": "2026-02-01T10:00:00Z"
+    },
+    "posts": [
+        {
+            "id": "p1",
+            "authorId": "u2",
+            "authorName": "Aman",
+            "team": "Frontend",
+            "avatarUrl": null,
+            "title": "POV: Angular Change Detection",
+            "body": "You changed one variable...\nAngular: Reload entire universe 🌍\n\n||Actually it's zone.js magic||",
+            "tags": [
+                "angular",
+                "frontend",
+                "relatable"
+            ],
+            "mood": "funny",
+            "createdAt": "2026-02-05T09:00:00Z",
+            "updatedAt": null,
+            "likeCount": 2,
+            "bookmarkCount": 1,
+            "flagCount": 0,
+            "deleted": false
+        },
+        {
+            "id": "p2",
+            "authorId": "u3",
+            "authorName": "Neha",
+            "team": "Backend",
+            "avatarUrl": null,
+            "title": "ASCII Art Mood",
+            "body": "When deploy succeeds on first try:\n\n(•‿•)\n\nWhen prod crashes after:\n\n(╯°□°）╯︵ ┻━┻",
+            "tags": [
+                "ascii",
+                "deploy",
+                "backend"
+            ],
+            "mood": "chaotic",
+            "createdAt": "2026-02-05T12:30:00Z",
+            "updatedAt": null,
+            "likeCount": 5,
+            "bookmarkCount": 2,
+            "flagCount": 0,
+            "deleted": false
+        },
+        {
+            "id": "p3",
+            "authorId": "u1",
+            "authorName": "Binarykeeda",
+            "team": "Platform",
+            "avatarUrl": null,
+            "title": "POV: Debugging",
+            "body": "Code works ❌\nConsole.log works ✅\n\n||Remove console.log → bug returns||",
+            "tags": [
+                "debugging",
+                "pov"
+            ],
+            "mood": "relatable",
+            "createdAt": "2026-02-06T08:15:00Z",
+            "updatedAt": null,
+            "likeCount": 1,
+            "bookmarkCount": 0,
+            "flagCount": 0,
+            "deleted": false
+        },
+        {
+            "id": "p4",
+            "authorId": "u4",
+            "authorName": "Rohit",
+            "team": "DevOps",
+            "avatarUrl": null,
+            "title": "Night Deploy",
+            "body": "Dev: small config change only 😇\nDevOps at 2AM: ||Why are 37 pods restarting||",
+            "tags": [
+                "devops",
+                "deploy",
+                "night"
+            ],
+            "mood": "pain",
+            "createdAt": "2026-02-06T15:40:00Z",
+            "updatedAt": null,
+            "likeCount": 3,
+            "bookmarkCount": 1,
+            "flagCount": 0,
+            "deleted": false
+        },
+        {
+            "id": "p5",
+            "authorId": "u5",
+            "authorName": "Priya",
+            "team": "QA",
+            "avatarUrl": null,
+            "title": null,
+            "body": "Developer: Works on my machine\nQA: ||Which machine? NASA supercomputer?||",
+            "tags": [
+                "qa",
+                "testing",
+                "relatable"
+            ],
+            "mood": "funny",
+            "createdAt": "2026-02-07T11:10:00Z",
+            "updatedAt": null,
+            "likeCount": 4,
+            "bookmarkCount": 2,
+            "flagCount": 0,
+            "deleted": false
+        },
+        {
+            "id": "p6",
+            "authorId": "u6",
+            "authorName": "Riya",
+            "team": "Design",
+            "avatarUrl": null,
+            "title": "UI/UX a discipline",
+            "body": "UI is not just about making things pretty. It's about problem-solving and creating intuitive experiences. Good design is invisible.",
+            "tags": [
+                "ui",
+                "ux",
+                "design"
+            ],
+            "mood": "insightful",
+            "createdAt": "2026-02-08T14:00:00Z",
+            "updatedAt": null,
+            "likeCount": 0,
+            "bookmarkCount": 0,
+            "flagCount": 0,
+            "deleted": false
+        }
+    ],
+    "likes": [
+        {
+            "userId": "u1",
+            "postId": "p1",
+            "createdAt": "2026-02-06T10:00:00Z"
+        },
+        {
+            "userId": "u1",
+            "postId": "p2",
+            "createdAt": "2026-02-06T10:05:00Z"
+        },
+        {
+            "userId": "u2",
+            "postId": "p3",
+            "createdAt": "2026-02-06T11:00:00Z"
+        }
+    ],
+    "bookmarks": [
+        {
+            "userId": "u1",
+            "postId": "p2",
+            "createdAt": "2026-02-06T12:00:00Z"
+        },
+        {
+            "userId": "u1",
+            "postId": "p4",
+            "createdAt": "2026-02-07T09:00:00Z"
+        }
+    ],
+    "flags": [
+        {
+            "id": "f1",
+            "postId": "p3",
+            "flaggedBy": "u2",
+            "reason": "Spam",
+            "status": "open",
+            "createdAt": "2026-02-06T12:30:00Z"
+        }
+    ],
+    "preferences": {
+        "u1": {
+            "sort": "newest",
+            "teamFilter": [],
+            "moodFilter": [],
+            "tagFilter": [],
+            "savedOnly": false,
+            "likedOnly": false
+        }
+    },
+    "drafts": {
+        "draft:u1:new": {
+            "title": "",
+            "body": "",
+            "tags": [],
+            "mood": "funny",
+            "updatedAt": "2026-02-07T12:00:00Z"
+        },
+        "draft:u1:post:p3": {
+            "title": "POV: Debugging",
+            "body": "Code works ❌\nConsole.log works ✅",
+            "tags": [
+                "debugging"
+            ],
+            "mood": "relatable",
+            "updatedAt": "2026-02-07T12:05:00Z"
+        }
+    }
+}
