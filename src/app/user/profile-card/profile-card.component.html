@@ -2,7 +2,7 @@
   <div *ngIf="user" class="text-center">
     <!-- Avatar with gradient ring -->
     <div class="relative inline-block mb-6">
-      <div class="w-28 h-28 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-5xl font-bold text-cyan-400 border-4 border-gray-800 shadow-xl shadow-cyan-500/20">
+      <div class="w-28 h-28 rounded-full bg-linear-to-br from-gray-700 to-gray-800 flex items-center justify-center text-5xl font-bold text-cyan-400 border-4 border-gray-800 shadow-xl shadow-cyan-500/20">
         {{ user.name.charAt(0) }}
       </div>
       <div class="absolute -bottom-1 -right-1 w-8 h-8 bg-cyan-400 rounded-full border-4 border-gray-900 flex items-center justify-center shadow-lg shadow-cyan-400/50">
@@ -20,7 +20,7 @@
     <!-- Action Button -->
     <button 
       (click)="openComposer()" 
-      class="group relative w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:from-cyan-400 hover:to-blue-400 transition-all duration-200 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105">
+      class="group relative w-full bg-linear-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:from-cyan-400 hover:to-blue-400 transition-all duration-200 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105">
       <span class="flex items-center justify-center gap-2">
         <i class="fas fa-plus-circle"></i>
         Create New Post

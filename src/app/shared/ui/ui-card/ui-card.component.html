@@ -1,7 +1,7 @@
 <div class="bg-gray-900 shadow-2xl rounded-2xl p-6 mb-4 border border-gray-800 hover:border-gray-700 transition-all duration-200">
   <!-- Post Header with Author -->
   <div class="flex items-center gap-3 mb-4">
-    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-lg font-bold text-cyan-400 border-2 border-gray-700 shadow-lg">
+    <div class="w-12 h-12 rounded-full bg-linear-to-br from-gray-700 to-gray-800 flex items-center justify-center text-lg font-bold text-cyan-400 border-2 border-gray-700 shadow-lg">
       {{ authorName?.charAt(0) || 'A' }}
     </div>
     <div class="flex-1">
@@ -60,7 +60,7 @@
     <div *ngIf="comments.length > 0; else noComments" class="space-y-3 mb-4 max-h-64 overflow-y-auto custom-scrollbar">
       <div *ngFor="let comment of comments; let i = index" class="p-3 bg-gray-800 rounded-xl text-gray-300 text-sm border border-gray-700 hover:border-gray-600 transition-colors duration-200">
         <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+          <div class="w-8 h-8 rounded-full bg-linear-to-br from-purple-600 to-pink-600 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
             {{ getCommentAuthorInitial(i) }}
           </div>
           <div class="flex-1">
@@ -83,7 +83,7 @@
     </ng-template>
 
     <div class="flex gap-2 mt-4">
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-sm font-bold text-white flex-shrink-0 shadow-lg shadow-cyan-500/30">
+      <div class="w-10 h-10 rounded-full bg-linear-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-sm font-bold text-white flex-shrink-0 shadow-lg shadow-cyan-500/30">
         {{ currentUserInitial || 'M' }}
       </div>
       <div class="flex-grow flex gap-2">
